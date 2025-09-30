@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Message Generator</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 50px; background-color: #f9f9f9; }
+        .container { max-width: 600px; margin: auto; background: white; padding: 30px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+        input[type="text"], textarea { width: 100%; padding: 10px; margin: 10px 0; border-radius: 5px; border: 1px solid #ccc; }
+        button { padding: 10px 20px; border: none; border-radius: 5px; background-color: #4CAF50; color: white; cursor: pointer; }
+        button:hover { background-color: #45a049; }
+        .message { background-color: #f1f1f1; padding: 15px; margin-top: 15px; border-radius: 5px; }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>Message Generator</h1>
+    <form th:action="@{/generate}" method="post">
+        <label for="prompt">Enter your prompt:</label>
+        <input type="text" id="prompt" name="prompt" th:value="${prompt}" placeholder="E.g., Diwali greeting for customers" required>
+        <button type="submit">Generate Message</button>
+    </form>
+
+    <div th:if="${generatedMessage}" class="message">
+        <h3>Generated Message:</h3>
+        <p th:text="${generatedMessage}"></p>
+    </div>
+</div>
+</body>
+</html>
